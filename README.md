@@ -59,16 +59,16 @@ services:
   wireguard-mullvad:
     build: .
     container_name: wireguard-mullvad	# Name it whatever you like.
-    network_mode: "host"				# Using host network creates a wg0 interface.
-    ports:								# Remove ports if networkmode host is used.
-      - "1080:1080"						# If you change the container port here, change port in dante.conf accordingly.
+    network_mode: "host"		# Using host network creates a wg0 interface.
+    ports:				# Remove ports if networkmode host is used.
+      - "1080:1080"			# If you change the container port here, change port in dante.conf accordingly.
     cap_add:
-      - NET_ADMIN						# Required so container can manage network interfaces and routing on the host.
-    privileged: true					# Same as above
+      - NET_ADMIN			# Required so container can manage network interfaces and routing on the host.
+    privileged: true			# Same as above
     volumes:
       - ./wg-configs:/etc/wireguard 	# Location of your Mullvad WireGuard configuration file
     environment:
-      - WG_CONFIG=wg0.conf				# The name of your WireGuard config
+      - WG_CONFIG=wg0.conf		# The name of your WireGuard config
     restart: unless-stopped
 ```
 
