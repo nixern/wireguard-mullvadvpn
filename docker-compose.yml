@@ -1,0 +1,15 @@
+services:
+  wireguard-mullvadvpn:
+    build: .
+    container_name: wireguard-mullvadvpn
+    network_mode: "host"
+    ports:
+      - "1080:1080"
+    cap_add:
+      - NET_ADMIN
+    privileged: true
+    volumes:
+      - ./wg-configs:/etc/wireguard
+    environment:
+      - WG_CONFIG=wg0.conf
+    restart: unless-stopped
